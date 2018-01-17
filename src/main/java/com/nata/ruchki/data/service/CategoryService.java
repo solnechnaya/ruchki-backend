@@ -30,4 +30,11 @@ public class CategoryService {
     private Categories toEntity(CategoriesValue categoriesValue) {
         return new Categories(categoriesValue.getName());
     }
+
+    public CategoriesValue update(CategoriesValue categoriesValue) {
+        Categories c = categoriesRepo.findOne(categoriesValue.getId());
+        c.setName(categoriesValue.getName());
+        categoriesRepo.save(c);
+        return toValue(c);
+    }
 }

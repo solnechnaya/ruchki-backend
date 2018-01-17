@@ -30,7 +30,7 @@ public class HelloController {
 
     @RequestMapping(value = "/test", method = RequestMethod.POST, consumes = {"application/json"})
     public Model<String> testPost(@RequestBody Model<String> testValue) {
-        logger.debug("Added {}",testValue.getValue());
+        logger.debug("Added {}", testValue.getValue());
         return testValue;
     }
 
@@ -40,5 +40,9 @@ public class HelloController {
         return new Model<>(id);
     }
 
+    @RequestMapping(value = "/category", method = RequestMethod.PUT, consumes = {"application/json"}, produces = {"application/json"})
+    public CategoriesValue updateCategory(@RequestBody CategoriesValue categoriesValue) {
+        return categoryService.update(categoriesValue);
+    }
 
 }

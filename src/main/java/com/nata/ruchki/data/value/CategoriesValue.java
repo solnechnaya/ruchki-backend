@@ -32,7 +32,7 @@ public class CategoriesValue {
         return name;
     }
 
-    public void seName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
