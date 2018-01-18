@@ -17,6 +17,7 @@ public class ProductsValue {
     private Long categoriesId;
 
     public ProductsValue() {
+
     }
 
     public ProductsValue(Long id, String name, String shortDescr, String descr, Byte[] picture, Long categoriesId) {

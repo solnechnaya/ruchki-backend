@@ -20,7 +20,6 @@ public class Products implements Serializable {
 
     public Products() {
     }
-
     public Products(String name, String shortDescr, String descr, Byte[] picture, Categories category) {
         this.name = name;
         this.shortDescr = shortDescr;
