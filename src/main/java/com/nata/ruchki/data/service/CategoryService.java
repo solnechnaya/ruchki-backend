@@ -5,6 +5,10 @@ import com.nata.ruchki.data.repository.CategoriesRepo;
 import com.nata.ruchki.data.value.CategoriesValue;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CategoryService {
 
@@ -36,5 +40,18 @@ public class CategoryService {
         c.setName(categoriesValue.getName());
         categoriesRepo.save(c);
         return toValue(c);
+    }
+
+    public List<CategoriesValue> list() {
+        Iterable<Categories> iterable = categoriesRepo.findAll();
+        List<Categories> list = new ArrayList<>();
+        iterable.forEach(list::add);
+       /* List<CategoriesValue> values = new ArrayList<>();
+            for (Categories c : list) {
+            CategoriesValue categoriesValue = toValue(c);
+            values.add(categoriesValue);
+            }
+            return values;*/
+        return list.stream().map(this::toValue).collect(Collectors.toList());
     }
 }
