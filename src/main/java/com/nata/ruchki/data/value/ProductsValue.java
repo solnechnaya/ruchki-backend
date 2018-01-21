@@ -15,12 +15,12 @@ public class ProductsValue {
     private String descr;
     private Byte[] picture;
     private Long categoriesId;
+    private String categoriesName;
 
     public ProductsValue() {
-
     }
 
-    public ProductsValue(Long id, String name, String shortDescr, String descr, Byte[] picture, Long categoriesId) {
+    public ProductsValue(Long id, String name, String shortDescr, String descr, Byte[] picture, Long categoriesId, String categoriesName) {
 
         this.id = id;
         this.name = name;
@@ -28,6 +28,7 @@ public class ProductsValue {
         this.descr = descr;
         this.picture = picture;
         this.categoriesId = categoriesId;
+        this.categoriesName = categoriesName;
     }
 
     public Long getId() {
@@ -78,6 +79,14 @@ public class ProductsValue {
         this.categoriesId = categoriesId;
     }
 
+    public String getCategoriesName() {
+        return categoriesName;
+    }
+
+    public void setCategoriesName(String categoriesName) {
+        this.categoriesName = categoriesName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,11 +97,12 @@ public class ProductsValue {
                 Objects.equals(shortDescr, that.shortDescr) &&
                 Objects.equals(descr, that.descr) &&
                 Arrays.equals(picture, that.picture) &&
-                Objects.equals(categoriesId, that.categoriesId);
+                Objects.equals(categoriesId, that.categoriesId) &&
+                Objects.equals(categoriesName, that.categoriesName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, shortDescr, descr, picture, categoriesId);
+        return Objects.hash(id, name, shortDescr, descr, picture, categoriesId, categoriesName);
     }
 }

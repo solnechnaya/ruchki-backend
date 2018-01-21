@@ -24,7 +24,8 @@ public class ProductService {
 
     private ProductsValue toValue(Products entity) {
         return new ProductsValue(
-                entity.getId(), entity.getName(), entity.getShortDescr(), entity.getDescr(), entity.getPicture(), entity.getCategory().getId()
+                entity.getId(), entity.getName(), entity.getShortDescr(), entity.getDescr(),
+                entity.getPicture(), entity.getCategory().getId(), entity.getCategory().getName()
         );
     }
 
