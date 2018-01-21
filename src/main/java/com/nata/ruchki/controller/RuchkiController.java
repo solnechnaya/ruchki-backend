@@ -14,7 +14,6 @@ import java.util.List;
 
 @SuppressWarnings("ALL")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class RuchkiController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -38,7 +37,7 @@ public class RuchkiController {
         return categoryService.update(categoriesValue);
     }
 
-    @RequestMapping(value = "/category/list", method = RequestMethod.GET, consumes = {"application/json"}, produces = {"application/json"})
+    @RequestMapping(value = "/category/list", method = RequestMethod.GET, produces = {"application/json"})
     public List<CategoriesValue> listCategory() {
         return categoryService.list();
     }
