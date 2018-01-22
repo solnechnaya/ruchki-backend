@@ -8,7 +8,13 @@ import com.nata.ruchki.data.value.ProductsValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -66,5 +72,39 @@ public class RuchkiController {
     @RequestMapping(value = "/product/list", method = RequestMethod.GET, consumes = {"application/json"}, produces = {"application/json"})
     public List<ProductsValue> listProducts() {
         return productService.list();
+    }
+
+
+    @RequestMapping(value = "/product/picture", method = RequestMethod.POST, consumes = {"multipart/form-data"}, produces = {"application/json"})
+    public Model<String> singleFileUpload(@RequestParam("file") MultipartFile file) {
+
+
+        try {
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new Model<>("ok");
+    }
+
+    @RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
+    public StreamingResponseBody getSteamingFile(HttpServletResponse response) throws IOException {
+        response.setContentType("image/png");
+        response.setHeader("Content-Disposition", "attachment; filename=\"picture.png\"");
+        byte file[] = new byte[1];
+        InputStream inputStream = new ByteArrayInputStream(file);
+        return outputStream -> {
+            int nRead;
+            byte[] data = new byte[1024];
+            while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+                System.out.println("Writing some bytes..");
+                outputStream.write(data, 0, nRead);
+            }
+        };
     }
 }
