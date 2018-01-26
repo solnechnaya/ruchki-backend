@@ -75,14 +75,18 @@ public class RuchkiController {
     }
 
 
-    @RequestMapping(value = "/product/picture", method = RequestMethod.POST, consumes = {"multipart/form-data"}, produces = {"application/json"})
-    public Model<String> singleFileUpload(@RequestParam("file") MultipartFile file) {
-
+    @RequestMapping(value = "/product/picture/{id}", method = RequestMethod.POST, consumes = {"multipart/form-data"}, produces = {"application/json"})
+    public Model<String> singleFileUpload(@RequestParam("file") MultipartFile file, @PathVariable Long id) {
 
         try {
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
+
+            productService.upload(bytes, id);
+
+            logger.debug("id = {} ", id);
+            logger.debug("Длина файла = {}", bytes.length);
 
 
         } catch (IOException e) {
@@ -92,11 +96,13 @@ public class RuchkiController {
         return new Model<>("ok");
     }
 
-    @RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
-    public StreamingResponseBody getSteamingFile(HttpServletResponse response) throws IOException {
-        response.setContentType("image/png");
-        response.setHeader("Content-Disposition", "attachment; filename=\"picture.png\"");
-        byte file[] = new byte[1];
+    @RequestMapping(value = "/downloadFile/{id}", method = RequestMethod.GET)
+    public StreamingResponseBody getSteamingFile(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        response.setContentType("image/jpg");
+        response.setHeader("Content-Disposition", "attachment; filename=\"picture.jpg\"");
+
+        byte file[] = productService.download(id);
+
         InputStream inputStream = new ByteArrayInputStream(file);
         return outputStream -> {
             int nRead;

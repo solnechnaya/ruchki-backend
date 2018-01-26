@@ -1,5 +1,7 @@
 package com.nata.ruchki.data.value;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -13,14 +15,14 @@ public class ProductsValue {
     private String name;
     private String shortDescr;
     private String descr;
-    private Byte[] picture;
+    private byte[] picture;
     private Long categoriesId;
     private String categoriesName;
 
     public ProductsValue() {
     }
 
-    public ProductsValue(Long id, String name, String shortDescr, String descr, Byte[] picture, Long categoriesId, String categoriesName) {
+    public ProductsValue(Long id, String name, String shortDescr, String descr, byte[] picture, Long categoriesId, String categoriesName) {
 
         this.id = id;
         this.name = name;
@@ -63,11 +65,12 @@ public class ProductsValue {
         this.descr = descr;
     }
 
-    public Byte[] getPicture() {
+    @JsonIgnore
+    public byte[] getPicture() {
         return picture;
     }
 
-    public void setPicture(Byte[] picture) {
+    public void setPicture(byte[] picture) {
         this.picture = picture;
     }
 

@@ -51,4 +51,10 @@
 
     </changeSet>
 
+    <changeSet id="22-01-2018_17-32" author="NataL">
+        <dropNotNullConstraint tableName="products" columnName="picture" columnDataType="BLOB"/>
+        <modifyDataType tableName="products" columnName="picture" newDataType="MEDIUMBLOB"/>
+    </changeSet>
+
+
 </databaseChangeLog>

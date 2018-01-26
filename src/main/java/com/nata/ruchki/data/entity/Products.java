@@ -15,12 +15,13 @@ public class Products implements Serializable {
     private String name;
     private String shortDescr;
     private String descr;
-    private Byte[] picture;
+    private byte[] picture;
     private Categories category;
 
     public Products() {
     }
-    public Products(String name, String shortDescr, String descr, Byte[] picture, Categories category) {
+
+    public Products(String name, String shortDescr, String descr, byte[] picture, Categories category) {
         this.name = name;
         this.shortDescr = shortDescr;
         this.descr = descr;
@@ -66,12 +67,12 @@ public class Products implements Serializable {
         this.descr = descr;
     }
 
-    @Column(name = "picture", nullable = false)
-    public Byte[] getPicture() {
+    @Column(name = "picture")
+    public byte[] getPicture() {
         return picture;
     }
 
-    public void setPicture(Byte[] picture) {
+    public void setPicture(byte[] picture) {
         this.picture = picture;
     }
 

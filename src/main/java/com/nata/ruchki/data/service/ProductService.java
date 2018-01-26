@@ -30,7 +30,7 @@ public class ProductService {
     }
 
     private Products toEntity(ProductsValue productsValue) {
-        Byte[] picture = new Byte[1];
+        byte[] picture = new byte[1];
         picture[0] = 0;
         Categories category = categoriesRepo.findOne(productsValue.getCategoriesId());
         return new Products(productsValue.getName(), productsValue.getShortDescr(), productsValue.getDescr(), picture, category);
@@ -61,5 +61,15 @@ public class ProductService {
         return list.stream().map(this::toValue).collect(Collectors.toList());
     }
 
+    public void upload(byte[] x, Long id) {
+        Products products = productRepo.findOne(id);
+        products.setPicture(x);
+        productRepo.save(products);
+    }
+
+    public byte[] download(Long id) {
+        Products products = productRepo.findOne(id);
+        return products.getPicture();
+    }
 }
 
