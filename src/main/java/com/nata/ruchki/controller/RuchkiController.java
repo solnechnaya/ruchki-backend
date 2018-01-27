@@ -69,7 +69,7 @@ public class RuchkiController {
         return productService.find(id);
     }
 
-    @RequestMapping(value = "/product/list", method = RequestMethod.GET, consumes = {"application/json"}, produces = {"application/json"})
+    @RequestMapping(value = "/product/list", method = RequestMethod.GET, produces = {"application/json"})
     public List<ProductsValue> listProducts() {
         return productService.list();
     }
