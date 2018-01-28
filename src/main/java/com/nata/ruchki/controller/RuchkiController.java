@@ -48,7 +48,7 @@ public class RuchkiController {
         return categoryService.list();
     }
 
-    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET, consumes = {"application/json"}, produces = {"application/json"})
+    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET, produces = {"application/json"})
     public CategoriesValue category(@PathVariable Long id) {
         return categoryService.find(id);
     }
