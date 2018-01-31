@@ -44,7 +44,7 @@ public class Categories implements Serializable {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category") // связь между таблицами, отношение один ко многим
     public List<Products> getProducts() {
         return products;
     }

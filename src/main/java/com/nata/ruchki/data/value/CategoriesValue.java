@@ -12,6 +12,7 @@ public class CategoriesValue {
     private Long id;
     private String name;
 
+    // пустой конструктор, нужен для
     public CategoriesValue() {
     }
 
@@ -36,7 +37,11 @@ public class CategoriesValue {
         this.name = name;
     }
 
-    @Override
+    @Override  //@Override - для переопределения метода базового класса.
+    //если в базовом классе не окажется метода с аналогичной сигнатурой, то мы получим предупреждение компилятора о том, что этого не произошло.
+    //Аннотация  никак не влияет на сам факт переопределения метода - при совпадении сигнатур с методом базового класса он и так будет переопределен,
+    //она служит лишь для контроля успешности действия при сборке проекта
+    //http://info.javarush.ru/Coder/2015/09/23/Перегрузка-методов-equals-и-hashCode-в-Java.html
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

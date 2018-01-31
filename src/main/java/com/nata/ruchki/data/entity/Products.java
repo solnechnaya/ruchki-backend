@@ -7,8 +7,8 @@ import java.io.Serializable;
  * @author Natalia Levchenko
  */
 @SuppressWarnings("unused")
-@Entity
-@Table(name = "products")
+@Entity                    // показывает, что этот класс entity (сущность)
+@Table(name = "products") // имя таблицы в БД
 public class Products implements Serializable {
 
     private Long id;
@@ -29,9 +29,9 @@ public class Products implements Serializable {
         this.category = category;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Id  // означает, что это поле является первичным ключем
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //генерация id автоматически
+    @Column(name = "id", nullable = false) //имя колонки, nullable = false - обязательно должно быть заполненно
     public Long getId() {
         return id;
     }
@@ -76,11 +76,11 @@ public class Products implements Serializable {
         this.picture = picture;
     }
 
-    @ManyToOne()
-    @JoinColumn(name = "categories_id", nullable = false)
+    @ManyToOne()// связь между таблицами, отношение много к одному
+    @JoinColumn(name = "categories_id", nullable = false)// имя колонки с "сылкой"
     public Categories getCategory() {
         return category;
-    }
+    }//возвращает в колонку категорию продукта
 
     public void setCategory(Categories category) {
         this.category = category;

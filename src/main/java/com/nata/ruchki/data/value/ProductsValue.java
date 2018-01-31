@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Natalia Levchenko
  */
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //Аннотация указывает IDE подавить предупреждения компиляции.
 public class ProductsValue {
     private Long id;
     private String name;

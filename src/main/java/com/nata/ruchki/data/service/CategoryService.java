@@ -18,20 +18,22 @@ public class CategoryService {
         this.categoriesRepo = categoriesRepo;
     }
 
-    public Long add(CategoriesValue categoriesValue) {
+    public Long add(CategoriesValue categoriesValue) { //возвращает id новой категории
         Categories result = categoriesRepo.save(toEntity(categoriesValue));
         return result.getId();
     }
 
+    //находит категорию по id
     public CategoriesValue find(Long id) {
         return toValue(categoriesRepo.findOne(id));
     }
 
+    //преобразование entity в объект CategoriesValue
     private CategoriesValue toValue(Categories entity) {
         return new CategoriesValue(entity.getId(), entity.getName());
     }
 
-    private Categories toEntity(CategoriesValue categoriesValue) {
+    private Categories toEntity(CategoriesValue categoriesValue) {//преобразование объекта CategoriesValue в entity
         return new Categories(categoriesValue.getName());
     }
 
