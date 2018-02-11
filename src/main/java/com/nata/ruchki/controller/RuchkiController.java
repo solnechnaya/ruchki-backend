@@ -73,7 +73,7 @@ public class RuchkiController {
         return productService.update(productsValue);
     }
 
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET, consumes = {"application/json"}, produces = {"application/json"})
+    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET, produces = {"application/json"})
     public ProductsValue products(@PathVariable Long id) {//@PathVariable указывает на то, что данный параметр получается из адресной строки(id)
         return productService.find(id);
     }

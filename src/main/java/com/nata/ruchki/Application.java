@@ -34,7 +34,7 @@ public class Application {
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer corsConfigurer() { //для предотвращения конфликта, когда BE и FE на одном хосте
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
