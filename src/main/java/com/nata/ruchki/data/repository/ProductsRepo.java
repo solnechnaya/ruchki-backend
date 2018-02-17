@@ -12,7 +12,8 @@ import java.util.List;
 //создание нового репозитория, наследуется от CrudRepository, позволяет использовать его методы сохранения, нахождения, удаления
 public interface ProductsRepo extends CrudRepository<Products, Long> {
 
-    @Query("select p from Products p where p.name like ?1 and p.descr like ?2")
-    List<Products> search(String author, String title);
+    @Query("select p from Products p where p.name like ?1 or p.descr like ?1")
+//аннотация Query позволяет создать специальный запрос к БД
+    List<Products> search(String s);            //like(вхождение) - подобно, ?1(позиции параметров метода)
 
 }

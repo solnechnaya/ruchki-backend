@@ -57,7 +57,7 @@ public class ProductService {
     public List<ProductsValue> list() {//выводит список всех продуктов
         Iterable<Products> iterable = productRepo.findAll();//
         List<Products> list = new ArrayList<>();//новый список
-        iterable.forEach(list::add);//перебирает
+        iterable.forEach(list::add);//перебирает и последовательно извлекает и добавляет
         return list.stream().map(this::toValue).collect(Collectors.toList());
     }
 
@@ -70,6 +70,14 @@ public class ProductService {
     public byte[] download(Long id) { //загрузка определенной картинки на комп
         Products products = productRepo.findOne(id);
         return products.getPicture();
+    }
+
+    public List<ProductsValue> listSearch(String search) {
+        List<Products> list = productRepo.search(search);
+        /*Iterable<Products> list = productRepo.search(search);
+        List<Products> listSearch = new ArrayList<>();
+        list.forEach(listSearch::add);*/
+        return list.stream().map(this::toValue).collect(Collectors.toList());
     }
 }
 

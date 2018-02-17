@@ -49,11 +49,12 @@ public class CategoryService {
         List<Categories> list = new ArrayList<>();
         iterable.forEach(list::add);
        /* List<CategoriesValue> values = new ArrayList<>();
-            for (Categories c : list) {
+            for (Categories c : list) { //проходит по списку list и помещает в с
             CategoriesValue categoriesValue = toValue(c);
             values.add(categoriesValue);
             }
             return values;*/
-        return list.stream().map(this::toValue).collect(Collectors.toList());
-    }
-}
+        return list.stream().map(this::toValue).collect(Collectors.toList());//stream - потоковая библиот, позволяющяя делать много операций с коллекциями
+    }                      //map - преобразовывает значение(в данной случае toValue преобразовывает C в CV)ко всем эл массива list будет применено toValue
+}                          //collect преобразовывает все это в нормальный список
+//и мы это все присваиваем list

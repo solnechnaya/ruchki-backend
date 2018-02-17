@@ -123,4 +123,11 @@ public class RuchkiController {
             }
         };
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST, consumes = {"application/json"}, produces = {"application/json"})
+    public List<ProductsValue> listSearch(@RequestBody Model<String> stringSearch) {
+        return productService.listSearch(stringSearch.getValue());
+    }
+
+
 }
