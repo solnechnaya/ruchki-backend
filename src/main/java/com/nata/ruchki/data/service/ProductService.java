@@ -74,9 +74,6 @@ public class ProductService {
 
     public List<ProductsValue> listSearch(String search) {
         List<Products> list = productRepo.search(search);
-        /*Iterable<Products> list = productRepo.search(search);
-        List<Products> listSearch = new ArrayList<>();
-        list.forEach(listSearch::add);*/
         return list.stream().map(this::toValue).collect(Collectors.toList());
     }
 }
